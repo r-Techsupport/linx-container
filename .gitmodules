@@ -1,0 +1,3 @@
+[submodule "linx-server"]
+	path = linx-server
+	url = https://github.com/ZizzyDizzyMC/linx-server.git
