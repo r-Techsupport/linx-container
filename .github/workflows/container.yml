@@ -8,6 +8,10 @@ on:
   schedule:
     - cron: "0 13 * * *"
 
+defaults:
+  run:
+    working-directory: linx-server
+
 env:
   REGISTRY: ghcr.io
   REPO: r-techsupport
@@ -58,7 +62,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          file: linx-server/Dockerfile
+          file: Dockerfile
 
   sbom-attestation:
     runs-on: ubuntu-latest
