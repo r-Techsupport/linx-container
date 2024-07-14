@@ -9,9 +9,8 @@ RUN mkdir dist && go build -o dist/
 
 FROM alpine:3.20
 
-COPY --from=build /app/dist/linx-server /usr/local/bin/linx-server
+COPY --from=build /app/dist/linx-server /app/linx-server
 
-ENV GOPATH /go
 ENV SSL_CERT_FILE /etc/ssl/cert.pem
 
 COPY linx-server/static /app/static/
@@ -23,5 +22,5 @@ VOLUME ["/data/files", "/data/meta", "/data/locks"]
 
 EXPOSE 8080
 USER nobody
-ENTRYPOINT ["/usr/local/bin/linx-server", "-bind=0.0.0.0:8080", "-filespath=/data/files/", "-metapath=/data/meta/", "-lockspath=/data/locks/"]
+ENTRYPOINT ["/app/linx-server", "-bind=0.0.0.0:8080", "-filespath=/data/files/", "-metapath=/data/meta/", "-lockspath=/data/locks/"]
 CMD ["-sitename=linx", "-allowhotlink"]
