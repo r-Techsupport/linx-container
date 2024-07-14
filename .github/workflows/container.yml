@@ -53,11 +53,12 @@ jobs:
         id: push
         uses: docker/build-push-action@v5
         with:
-          context: ./linx-server
+          context: .
           platforms: linux/amd64
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          file: Containerfile
 
   sbom-attestation:
     runs-on: ubuntu-latest
