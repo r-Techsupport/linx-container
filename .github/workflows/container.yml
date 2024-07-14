@@ -8,10 +8,6 @@ on:
   schedule:
     - cron: "0 13 * * *"
 
-defaults:
-  run:
-    working-directory: linx-server
-
 env:
   REGISTRY: ghcr.io
   REPO: r-techsupport
@@ -56,6 +52,7 @@ jobs:
       - name: Build and push Docker image
         id: push
         uses: docker/build-push-action@v5
+        working-directory: linx-server
         with:
           context: .
           platforms: linux/amd64
